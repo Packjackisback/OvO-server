@@ -3,7 +3,7 @@ const app = express();
 const port = 3000;
 
 // Serve static files from the "public" directory (for downloading JSON files)
-app.use(express.static('public'));
+app.use(express.static('uploads'));
 
 // Handle JSON file uploads
 const multer = require('multer');
@@ -15,7 +15,7 @@ app.post('/upload', upload.single('jsonFile'), (req, res) => {
 
 app.get('/download/:fileName', (req, res) => {
   const fileName = req.params.fileName;
-  res.download(`public/${fileName}`);
+  res.download(`uploads/${fileName}`);
 });
 
 app.listen(port, () => {
